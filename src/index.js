@@ -1,60 +1,39 @@
 class SmartCalculator {
   constructor(initialValue) {
-    this.initialValue = initialValue;
-    this.value = '' + this.initialValue;
-    this.prev = this.initialValue;
-    this.res = null;
-    this.expArr = [];
+    this.res = String(initialValue);
   }
 
   add(number) {
-    this.setProperties(number);
-    this.value += `+${number}`;
+    this.res += `+${number}`;
     return this;
   }
 
   subtract(number) {
-    this.setProperties(number);
-    this.value += `-${number}`;
+    this.res += `-${number}`;
     return this;
   }
 
   multiply(number) {
-    this.setProperties(number);
-    this.value += `*${number}`;
+    this.res += `*${number}`;
     return this;
   }
 
   devide(number) {
-    this.setProperties(number);
-    this.value += `/${number}`;
+    this.res += `/${number}`;
     return this;
   }
 
   pow(number) {
-    this.expArr.push(number);
-    const exp = this.expArr.reduceRight((a, b) => Math.pow(b, a), 1);
-
-    const length = this.res ? String(this.res).length : String(this.prev).length;
-
-    this.res = Math.pow(this.prev, exp);
-    this.value = this.value.slice(0, this.value.length - length) + this.res;
-
+    this.res += `**${number}`;
     return this;
   }
 
-  setProperties(number) {
-    this.prev = number;
-    this.expArr = []
-    this.res = null;
-  }
-
   valueOf() {
-    return eval(this.value);
+    return eval(this.res)
   }
 
   toString() {
-    return eval(this.value);
+    return eval(this.res)
   }
 }
 
